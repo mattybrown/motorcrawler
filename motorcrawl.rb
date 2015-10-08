@@ -16,9 +16,8 @@ mckendry = Wombat.crawl do
   base_url "http://mckendryford.co.nz"
   path "/used-vehicles"
 
-  mckendry "css=div.car-gallery-view", :iterator do
-    car "css=.desc h1"
-    price "css=.desc span"
+  car "css=.desc h1"
+  price "css=.desc span"
   end
 end
 =end
