@@ -12,17 +12,6 @@ pbmotors = Wombat.crawl do
   base_url "http://www.philbrownmotors.co.nz"
   path "/"
 
-    product "css=.product", :list
-   # price "css=div.product-price", :list
-
-
-end
-
-=begin
-pbmotors = Wombat.crawl do
-  base_url "http://www.philbrownmotors.co.nz"
-  path "/"
-
   vehicle "css=.product", :iterator do
     name "css=div.product-title"
     price "css=div.product-price"
@@ -51,15 +40,27 @@ mckendry2 = Wombat.crawl do
     end
 
 end
-=end
 
+wadsco = Wombat.crawl do
+  base_url "http://www.wadsco.co.nz"
+  path "/used-vehicles/"
+
+  vehicle "css=.Item-Container", :iterator do
+    name "css=.Description strong"
+    price "css=.Price"
+  end
+
+end
 
 File.delete("car_list")
 
 dealer_compile = Array.new
 dealer_compile << pbmotors
-#dealer_compile << mckendry
-#dealer_compile << mckendry2
+dealer_compile << mckendry
+dealer_compile << mckendry2
+dealer_compile << wadsco
 
-
+puts wadsco
+puts "-----------"
+puts dealer_compile
 add_to_file(dealer_compile)
