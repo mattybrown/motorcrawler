@@ -1,11 +1,17 @@
 require 'mechanize'
 require 'json'
 
+@master_arr = []
+
 
 def add_to_file(data)
-  File.open("car_list", "a") do |f|
+  File.open("car_list", "w") do |f|
     f.puts JSON.generate(data)
   end
+end
+
+def add_to_array(data)
+  @master_arr << data  
 end
 
 def mckendry_scrape
@@ -27,7 +33,7 @@ listing.each do |l|
  mckendrys << vehicle
 end
 
-add_to_file(mckendrys)
+add_to_array(mckendrys)
 
 end
 
@@ -51,7 +57,7 @@ listing.each do |l|
  mckendrys << vehicle
 end
 
-add_to_file(mckendrys)
+add_to_array(mckendrys)
 
 end
 
@@ -74,7 +80,7 @@ def richardbateman_scrape
     rb << vehicle
   end
 
-  add_to_file(rb)  
+  add_to_array(rb)  
 
 end
 
@@ -96,6 +102,34 @@ def seaview_scrape
     }
     seaview << vehicle
   end
-  add_to_file(seaview)
+  add_to_array(seaview)
 end
 
+def pbmotors_scrape
+
+  agent = Mechanize.new
+  page = agent.get('http://www.philbrownmotors.co.nz/')
+
+  listing = page.search(".product")
+
+  pbmotors = []
+
+  listing.each do |l|
+    vehicle = {
+      "name" => l.search(".product-title").text,
+      "price" => l.search(".product-price span").text,
+      "link" => "http://www.philbrownmotors.co.nz" + l.attribute('href')
+    }
+    pbmotors << vehicle
+  end
+  add_to_array(pbmotors)
+end
+
+
+pbmotors_scrape
+mckendry_scrape
+mckendry2_scrape
+seaview_scrape
+richardbateman_scrape
+
+add_to_file(@master_arr)
