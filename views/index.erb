@@ -1,0 +1,10 @@
+<ul>
+<% total = 0 %>
+<% @car_list.each do |a| %>
+  <% total +=  a.count %>
+  <% a.each do |b| %>
+   <li><a href="<%= b["link"] %>" ><%= b["name"] %> - <%= b["price"] %></a></li>
+  <% end %>
+<% end %>
+<li><%= total %> cars scraped</li>
+</ul>

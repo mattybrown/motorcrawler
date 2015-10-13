@@ -1,0 +1,26 @@
+#wrapper{
+  width:80%;
+  margin:0px auto;
+}
+
+html{
+  font-family:sans-serif;
+}
+
+ul{
+  list-style:none;
+}
+
+ul a{
+  text-decoration:none;
+  color:#000066;
+}
+
+ul a:hover{
+  text-decoration:underline;
+  color:#3366CC;
+}
+
+ul a:visited{
+  color:#990000;
+}
