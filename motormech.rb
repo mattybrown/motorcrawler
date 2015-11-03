@@ -5,7 +5,7 @@ require 'json'
 
 
 def add_to_file(data)
-  File.open("car_list", "w") do |f|
+  File.open("/var/www/motorcrawler/car_list", "w") do |f|
     f.puts JSON.generate(data)
   end
 end
@@ -15,14 +15,17 @@ def add_to_array(data)
 end
 
 def mckendry_scrape
-
+print "scraping mckendry ford... \n"
 agent = Mechanize.new
 
 page = agent.get('http://mckendryford.co.nz/used-vehicles')
-page2 = page.link_with(:text => 'Next »').click
-
 listing = page.search(".car-gallery-view")
-listing += page2.search(".car-gallery-view")
+
+if page.link_with(:text => 'Next »')
+  page2 = page.link_with(:text => 'Next »').click
+  listing += page2.search(".car-gallery-view")
+end
+
 mckendrys =[]
 
 listing.each do |l|
@@ -39,14 +42,17 @@ end
 
 
 def mckendry2_scrape
-
+print "scraping mckendrys... \n"
 agent = Mechanize.new
 
 page = agent.get('http://www.mckendrys.co.nz/used-cars')
-page2 = page.link_with(:text => 'Next »').click
-
 listing = page.search(".car-gallery-view")
-listing += page2.search(".car-gallery-view")
+
+if page.link_with(:text => 'Next »')
+  page2 = page.link_with(:text => 'Next »').click
+  listing += page2.search(".car-gallery-view")
+end
+
 mckendrys =[]
 
 listing.each do |l|
@@ -63,7 +69,7 @@ end
 
 
 def richardbateman_scrape
-  
+  print "scraping batemans... \n"
   agent = Mechanize.new
   page = agent.get('http://www.richardbatemanmotors.co.nz/vehicles.aspx')
   
@@ -86,7 +92,7 @@ end
 
 
 def seaview_scrape
-
+print "scraping seaview... \n"
   agent = Mechanize.new
   page = agent.get('http://www.seaviewwholesale.co.nz/index.php/component/vehiclemanager/118/view_user_vehicles/Graham%20H')
 
@@ -106,7 +112,7 @@ def seaview_scrape
 end
 
 def pbmotors_scrape
-
+print "scraping pbmotors... \n"
   agent = Mechanize.new
   page = agent.get('http://www.philbrownmotors.co.nz/')
 
@@ -133,3 +139,4 @@ seaview_scrape
 richardbateman_scrape
 
 add_to_file(@master_arr)
+
