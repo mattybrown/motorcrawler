@@ -1,11 +1,11 @@
-<ul>
+<div class="list-group">
 <% total = 0 %>
 <% @car_list.each do |a| %>
   <% total +=  a.count %>
   <% a.each do |b| %>
-   <li><a href="<%= b["link"] %>" ><%= b["name"] %> - <%= b["price"] %></a></li>
+   <a class="list-group-item" href="<%= b["link"] %>" ><h4 class="list-group-item-heading"><%= b["name"] %></h4><p class="list-group-item-heading"><%= b["price"] %></p></a>
   <% end %>
 <% end %>
 <li><%= total %> cars scraped</li>
 
-</ul>
+</div>

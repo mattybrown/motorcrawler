@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<head>
-<link rel="stylesheet" type="text/css" href="<%= url('/css/style.css') %>" />
-<title>Your regular shit</title>
-</head>
-<body> 
-  <div id="wrapper">
-    <p>This site is designed as a helpful resource that displays links to cars scraped from five websites. <a href="http://www.philbrownmotors.co.nz">Phil Brown Motors</a>, <a href="http://mckendryford.co.nz">McKendry Ford</a>, <a href="http://www.mckendrys.co.nz">McKendry's</a>, <a href="http://www.seaviewwholesale.co.nz">Seaview Wholesale</a> and <a href="http://www.richardbatemanmotors.co.nz">Richard Bateman Motors</a>. A few other local dealers don't have websites.</p>
-    <p>For bugs, fixes, ideas or if you just want to see how it works, check out my <a href="https://github.com/mattybrown/motorcrawler">github</a></p>
-    <h1>Used cars in Marlborough</h1>
-    <%= yield %>
-  </div>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Used Cars in Marlborough</title>
 
+    <!-- Bootstrap -->
+    <link href="<%= url('/css/bootstrap.min.css') %>" rel="stylesheet">
+    <link href="<%= url('/css/bootstrap-theme.min.css') %>" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Blenheim car dealer scraper</h1>
+        <p>This site is designed as a helpful resource that displays links to cars scraped from five websites. <a href="http://www.philbrownmotors.co.nz">Phil Brown Motors</a>, <a href="http://mckendryford.co.nz">McKendry Ford</a>, <a href="http://www.mckendrys.co.nz">McKendry's</a>, <a href="http://www.seaviewwholesale.co.nz">Seaview Wholesale</a> and <a href="http://www.richardbatemanmotors.co.nz">Richard Bateman Motors</a>. A few other local dealers don't have websites.</p>
+        <p>For bugs, fixes, ideas or if you just want to see how it works, check out my <a href="https://github.com/mattybrown/motorcrawler">github</a></p>
+
+
+      <div>
+        <h2>Used cars in Marlborough</h2>
+        <%= yield %>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<%= url('/js/bootstrap.min.js') %>"></script>
+  </body>
 </html>
-
